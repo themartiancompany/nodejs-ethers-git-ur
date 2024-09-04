@@ -17,8 +17,8 @@ pkgname="${_pkgname}-git"
 pkgver="v6.13.2".r2.g"5aba4963e3e8ddfc912747076f5b7fe7a743cfe2"
 pkgrel=1
 _pkgdesc=(
-
-  'Etherscan API async Python wrapper.'
+  "A complete, compact and simple library"
+  "for Ethereum and ilk, written in TypeScript."
 )
 pkgdesc="${_pkgdesc[*]}"
 arch=(
@@ -199,20 +199,24 @@ package() {
   cd \
     "${_npmdir}"
   _npm_opts+=(
-    --user
-      root
-    -g
-    --prefix
-      "${pkgdir}/usr"
+    # --user
+    #   "root"
+    # -g
+    # --prefix
+    #   "${pkgdir}/usr"
   )
   npm \
     install \
     "${_npm_opts[@]}" \
     "${srcdir}/${_Pkg}-${_branch}"
       # "${srcdir}/${_pkg}-${pkgver}.tgz"
-  mv \
-    "${pkgdir}/usr/lib/node_modules/root/"* \
-    "${pkgdir}/usr/lib/node_modules"
+  # mv \
+  #   "${pkgdir}/usr/lib/node_modules/ethers/node_modules/"* \
+  #   "${pkgdir}/usr/lib/node_modules"
+  # mv \
+  #   "${pkgdir}/usr/lib/node_modules/root" \
+  #   "${pkgdir}/usr/lib/node_modules/ethers"
+  tree .
 }
 
 # vim: ft=sh syn=sh et
