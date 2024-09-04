@@ -199,9 +199,9 @@ package() {
   cd \
     "${_npmdir}"
   _npm_opts+=(
-    # --user
-    #   root
-    # -g
+    --user
+      root
+    -g
     --prefix
       "${pkgdir}/usr"
   )
@@ -210,6 +210,9 @@ package() {
     "${_npm_opts[@]}" \
     "${srcdir}/${_Pkg}-${_branch}"
       # "${srcdir}/${_pkg}-${pkgver}.tgz"
+  mv \
+    "${pkgdir}/usr/lib/node_modules/root/"* \
+    "${pkgdir}/usr/lib/node_modules"
 }
 
 # vim: ft=sh syn=sh et
