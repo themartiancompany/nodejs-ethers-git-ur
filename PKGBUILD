@@ -184,7 +184,8 @@ pkgver() {
 
 package() {
   local \
-    _npmdir
+    _npmdir \
+    _npm_opts=()
   cd \
     "${srcdir}"
   install \
@@ -197,14 +198,17 @@ package() {
     "${_npmdir}"
   cd \
     "${_npmdir}"
+  _npm_opts+=(
+    # --user
+    #   root
+    # -g
+    --prefix
+      "${pkgdir}/usr"
+  )
   npm \
     install \
-      --user \
-        root \
-      -g \
-      --prefix \
-        "${pkgdir}/usr" \
-      "${srcdir}/${_Pkg}-${_branch}"
+    "${_npm_opts[@]}" \
+    "${srcdir}/${_Pkg}-${_branch}"
       # "${srcdir}/${_pkg}-${pkgver}.tgz"
 }
 
